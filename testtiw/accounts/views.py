@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import UserRegistrationForm, StudentProfileForm, OrganizerProfileForm
-from .models import User, Student, Organizer
+from .models import CustomUser, Student, Organizer
 
 
 def index(request):

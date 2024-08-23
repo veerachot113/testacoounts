@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser,User
 from django.db import models
 
 # Choices สำหรับคำนำหน้า
@@ -30,7 +30,7 @@ SCHOLARSHIP_CHOICES = [
 ]
 
 # Custom User Model
-class User(AbstractUser):
+class CustomUser(AbstractUser):
     is_student = models.BooleanField(default=False)
     is_organizer = models.BooleanField(default=False)
     groups = models.ManyToManyField(
@@ -49,20 +49,20 @@ class User(AbstractUser):
     )
 
 class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    title = models.CharField(max_length=10, choices=TITLE_CHOICES)
-    faculty = models.CharField(max_length=100, choices=FACULTY_CHOICES)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True)
+    title = models.CharField(max_length=10, choices=TITLE_CHOICES,default='0')
+    faculty = models.CharField(max_length=100, choices=FACULTY_CHOICES,default='0')
     number_of_credits_required = models.IntegerField(default=0)  # จำนวนหน่วยกิตที่ต้องการ
     number_of_credits_available = models.IntegerField(default=0)  # จำนวนหน่วยกิตที่มีอยู่
-    scholarship_type = models.CharField(max_length=50, choices=SCHOLARSHIP_CHOICES)
+    scholarship_type = models.CharField(max_length=50, choices=SCHOLARSHIP_CHOICES,default='0')
 
     def __str__(self):
         return f"{self.title} {self.user.first_name} {self.user.last_name}"
 
 class Organizer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    title = models.CharField(max_length=10, choices=TITLE_CHOICES)
-    faculty = models.CharField(max_length=100, choices=FACULTY_CHOICES)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True)
+    title = models.CharField(max_length=10, choices=TITLE_CHOICES ,default='0')
+    faculty = models.CharField(max_length=100, choices=FACULTY_CHOICES,default='0')
 
     def __str__(self):
         return f"{self.title} {self.user.first_name} {self.user.last_name}"
