@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your Role</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="bg-white p-10 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-8 text-center">Select Your Role</h1>
+        <div class="flex justify-around">
+            <a href="{% url 'register' %}?role=student" class="block w-40 p-6 bg-blue-500 text-white text-center rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+                <span class="text-lg font-semibold">I'm a Student</span>
+            </a>
+            <a href="{% url 'register' %}?role=organizer" class="block w-40 p-6 bg-green-500 text-white text-center rounded-lg shadow-md hover:bg-green-700 transition duration-300">
+                <span class="text-lg font-semibold">I'm an Organizer</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

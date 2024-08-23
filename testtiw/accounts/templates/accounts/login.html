@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="bg-white p-10 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-6 text-center">Login</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="space-y-4">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                
+                {{ form.password.label_tag }}
+                {{ form.password }}
+                
+                <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Login</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Create Your Account</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="space-y-4">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    {{ user_form.username }}
+                </div>
+                <div>
+                    <label for="first_name" class="block text-sm font-medium text-gray-700">First Name</label>
+                    {{ user_form.first_name }}
+                </div>
+                <div>
+                    <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
+                    {{ user_form.last_name }}
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                    {{ user_form.email }}
+                </div>
+                <div>
+                    <label for="password1" class="block text-sm font-medium text-gray-700">Password</label>
+                    {{ user_form.password1 }}
+                </div>
+                <div>
+                    <label for="password2" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                    {{ user_form.password2 }}
+                </div>
+
+                <!-- ฟิลด์ที่เกี่ยวข้องกับบทบาท -->
+                {% if role == 'student' %}
+                    {{ profile_form.as_p }}
+                {% elif role == 'organizer' %}
+                    {{ profile_form.as_p }}
+                {% endif %}
+            </div>
+            <div class="mt-6">
+                <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">Register</button>
+            </div>
+        </form>
+        <p class="mt-6 text-center text-sm text-gray-600">
+            Already have an account?
+            <a href="{% url 'login' %}" class="text-blue-500 hover:underline">Login here</a>.
+        </p>
+    </div>
+</body>
+</html>
